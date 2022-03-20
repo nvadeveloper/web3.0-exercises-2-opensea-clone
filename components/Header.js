@@ -2,6 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+import { AiOutlineSearch }from 'react-icons/ai'
+import { CgProfile }from 'react-icons/cg'
+import { MdOutlineAccountBalanceWallet }from 'react-icons/md'
+
+
 import openseaLogo from '../assets/opensea.png'
 
 const style = {
@@ -32,6 +37,30 @@ const Header = () => {
                 </div>
             </div>
         </Link>
+        <div className={style.searchBar}>
+            <div className={style.searchIcon}>
+                <AiOutlineSearch />       
+            </div>
+            <input 
+                className={style.searchInput}
+                placeholder='Search items, collections and accounts'
+            />
+        </div>
+        <div className={style.headerItems}>
+            <Link href='/collections/0x49E9219aC13F6692105C8d216698d72E7B2A2fE8'>
+                <div className={style.headerItem}>Collections</div>
+            </Link>
+
+            <div className={style.headerItem}>Stats</div>
+            <div className={style.headerItem}>Resourse</div>
+            <div className={style.headerItem}>Create</div>
+            <div className={style.headerIcon}>
+                <CgProfile />
+            </div>
+            <div className={style.headerIcon}>
+                <MdOutlineAccountBalanceWallet />
+            </div>
+        </div>
     </div>
   )
 }
