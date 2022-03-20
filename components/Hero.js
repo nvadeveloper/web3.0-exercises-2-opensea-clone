@@ -52,7 +52,7 @@ const Hero = () => {
                                 className='text-[#1868b7]'
                                 href='https://bts-opensea-clean.vercel.app/#:~:text=Jolly-,hola%2Dkanola'
                             >
-                                    hola-kanola
+                                hola-kanola
                             </a>
                         </div>
                     </div>
