@@ -210,8 +210,23 @@ const Collection = () => {
             </div>
           </div>
         </div> 
+        <div className={style.midRow}>
+          <div className={style.description}>
+            {collection?.description}
+          </div>
+        </div>
       </div>
-      {/* <NFTCard /> */}
+      <div className='flex flex-wrap'>
+        {nfts.map((nftItem, id) => (
+          <NFTCard 
+            key={id}
+            nftItem={nftItem}
+            title={collection?.title}
+            listings={listings}
+          />
+        ))}
+      </div>
+      
     </div>
   )
 }
