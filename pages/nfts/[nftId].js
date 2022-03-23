@@ -5,12 +5,14 @@ import { useRouter } from "next/router"
 import Header from "../../components/Header"
 import NFTImage from "../../components/nft/NFTImage"
 import GeneralDetails from "../../components/nft/GeneralDetails"
+import ItemActivity from "../../components/nft/ItemActivity"
+import Purchase from "../../components/nft/Purchase"
 
 const style = {
     wrapper: `flex flex-col items-center container-lg text-[#e5e8eb]`,
     container: `container p-6`,
     topContent: `flex`,
-    nftImgContainer: `flex-1 mr-4`,
+    nftImgContainer: `mr-4`,
     detailsContainer: `flex-[2] ml-4`,
   }
 
@@ -23,14 +25,13 @@ const Nft = () => {
     const nftModule = useMemo(() => {
         if (!provider) return
 
-        const sdk = new ThirdwebSDK(
-            provider.getSigner(),
-            'https://eth-rinkeby.alchemyapi.io/v2/onOLVULrVyBvbqluqXNYvidYEUgPdUCM'
+        const sdk = new ThirdwebSDK( 
+            provider.getSigner()
         )
-
+        
         return sdk.getNFTModule('0x49E9219aC13F6692105C8d216698d72E7B2A2fE8')
     }, [provider])
-
+    
     useEffect(() => {
         if (!nftModule) return
         ;(async () => {
@@ -49,8 +50,7 @@ const Nft = () => {
         if (!provider) return
 
         const sdk = new ThirdwebSDK(
-            provider.getSigner(),
-            'https://eth-rinkeby.alchemyapi.io/v2/onOLVULrVyBvbqluqXNYvidYEUgPdUCM'
+            provider.getSigner()
         )
 
         return sdk.getMarketplaceModule('0xDd9ADf385E9d99D61b64d4d821700daC6Ac0ef78')
@@ -65,7 +65,8 @@ const Nft = () => {
         })()
 
     }, [marketPlaceModule])
-
+    // console.log(provider)
+    // console.log(nftModule)  
   return (
     <div>
         <Header />
@@ -77,8 +78,15 @@ const Nft = () => {
                     </div>
                     <div className={style.detailsContainer}>
                         <GeneralDetails selectedNft={selectedNft}/>
+                        <Purchase 
+                            isListed={router.query.isListed}
+                            selectedNft={selectedNft}
+                            listings={listings}
+                            marketPlaceModule={marketPlaceModule}
+                        />
                     </div>                  
-                </div>                
+                </div> 
+                <ItemActivity />               
             </div>            
         </div>
         

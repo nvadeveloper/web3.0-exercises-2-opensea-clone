@@ -20,7 +20,7 @@ const NFTImage = ({ selectedNft }) => {
             </div>
         </div>
         <div >
-            <img src={selectedNft?.image} />
+            <img src={selectedNft?.image}/>
         </div>
     </div>
   )
